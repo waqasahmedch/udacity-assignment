@@ -20,11 +20,11 @@ jobs:
       - run:
           name: "Install Ansible"
           command: |
-              apk add --update ansible
+              apt install ansible
       - run:
           name: "Run playbook and configure server"
           command: |
-              ansible-playbook -i inventory configure-infra.yml
+              ansible-playbook -i inventory.txt configure-infra.yml
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
