@@ -1,6 +1,6 @@
 ---
 - name: Excercise to configure machine via Ansible in AWS using CircleCli
-  hosts: 3.84.159.166
+  hosts: 3.85.99.9
   user: ubuntu
   become: true
   become_method: sudo
