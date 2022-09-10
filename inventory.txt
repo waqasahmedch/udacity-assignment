@@ -1,2 +1,2 @@
 [all]
-3.85.99.9
+ec2-3-85-99-9.compute-1.amazonaws.com
