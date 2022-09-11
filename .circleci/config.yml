@@ -20,7 +20,7 @@ jobs:
           command: |
               aws cloudformation create-stack \
                 --template-body file://cloudfront.yml \
-                --stack-name production-distro 
+                --stack-name production-distro \
                 --parameters file://cloudFront-parameters.json \
                 --region=us-east-1
 
