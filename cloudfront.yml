@@ -16,8 +16,8 @@ Resources:
       Properties:
         DistributionConfig:
           Origins:
-#            - DomainName: !Sub "${PipelineID}.s3.amazonaws.com"
-            - DomainName: !Sub "s3-udacity-assignment.s3.amazonaws.com"
+            - DomainName: !Sub "${PipelineID}.s3.amazonaws.com"
+#            - DomainName: !Sub "s3-udacity-assignment.s3.amazonaws.com"
               Id: webpage
               S3OriginConfig:
                 OriginAccessIdentity: !Sub "origin-access-identity/cloudfront/${CloudFrontOriginAccessIdentity}"
