@@ -3,7 +3,8 @@ Parameters:
 PipelineID:
   Description: Existing Bucket name
   Type: String
-  Default: s3-udacity-assignment
+  Default: "s3-udacity-assignment"
+
 Resources:
     CloudFrontOriginAccessIdentity:
       Type: "AWS::CloudFront::CloudFrontOriginAccessIdentity"
