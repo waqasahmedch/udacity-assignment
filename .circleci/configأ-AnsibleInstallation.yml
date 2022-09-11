@@ -5,34 +5,30 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  SmokeTest:
+  configure_infrastructure:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
-      - image: alpine:latest
+      - image: python:3.7-alpine3.11
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
+      - add_ssh_keys:
+            # You can get this ID in the section where you registered the SSH Key
+            fingerprints: ["82:54:d7:07:4e:2f:6d:1b:12:cb:6e:49:63:82:5a:2a"] 
       - run:
-          name: "Install curl"
+          name: "Install Ansible"
           command: |
-              apk add --update curl
+              apk add --update ansible
       - run:
           name: "Run playbook and configure server"
           command: |
-              URL="https://blog.udacity.com/"
-              # Test if website exists
-              if curl -s --head ${URL} 
-              then
-                return 0
-              else
-                return 1
-              fi              
+              ansible-playbook -i inventory.txt configure-infra.yml
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  SmokeTestWF:
+  Configure-AnsibleInfra-workflow:
     jobs:
-      - SmokeTest
+      - configure_infrastructure
