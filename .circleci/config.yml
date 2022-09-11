@@ -43,4 +43,4 @@ workflows:
   SmokeTestWF:
     jobs:
       - create_infrastructure
-      - SmokeTest
+#      - SmokeTest
