@@ -21,7 +21,7 @@ jobs:
               aws cloudformation deploy \
               --template-file cloudfront.yml \
               --stack-name production-distro \
-              --parameter-file cloudFront-parameters.json  \ 
+              --parameter-overrides cloudFront-parameters.json  \ 
               --region us-east-1
 
 # Invoke jobs via workflows
