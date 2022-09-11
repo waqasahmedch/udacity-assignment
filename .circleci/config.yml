@@ -19,9 +19,9 @@ jobs:
           command: |
               apk add --update curl
       - run:
-          name: "Run playbook and configure server"
+          name: "Run curl and check"
           command: |
-              URL="https://blog.udacity.com/"
+              URL="https://blog1.udacity.com/"
               # Test if website exists
               if curl -s --head ${URL} 
               then
