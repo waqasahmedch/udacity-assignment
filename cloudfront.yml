@@ -3,6 +3,7 @@ Parameters:
 PipelineID:
   Description: Existing Bucket name
   Type: String
+  Deafult: s3-udacity-assignment
 Resources:
     CloudFrontOriginAccessIdentity:
       Type: "AWS::CloudFront::CloudFrontOriginAccessIdentity"
@@ -14,7 +15,8 @@ Resources:
       Properties:
         DistributionConfig:
           Origins:
-            - DomainName: !Sub "${PipelineID}.s3.amazonaws.com"
+#            - DomainName: !Sub "${PipelineID}.s3.amazonaws.com"
+            - DomainName: !Sub "s3-udacity-assignment.s3.amazonaws.com"
               Id: webpage
               S3OriginConfig:
                 OriginAccessIdentity: !Sub "origin-access-identity/cloudfront/${CloudFrontOriginAccessIdentity}"
