@@ -21,9 +21,8 @@ jobs:
               aws cloudformation deploy \
               --template-file cloudfront.yml \
               --stack-name production-distro \
-              --parameter-overrides PipelineID="s3-udacity-assignment" \ 
+              --parameter-file cloudFront-parameters.json  \ 
               --region us-east-1
-
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
