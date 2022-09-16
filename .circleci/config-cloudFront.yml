@@ -6,7 +6,7 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  create_and_deploy_front_end:
+  create_infrastructure:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
@@ -16,17 +16,17 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Execute bucket.yml - Create Cloudformation Stack
+          name: "Create cloud  front"
           command: |
-              aws cloudformation deploy \
-                --template-file bucket.yml \
-                --stack-name stack-create-bucket-${CIRCLE_WORKFLOW_ID:0:7} \
-                --parameter-overrides MyBucketName="mybucket-${CIRCLE_WORKFLOW_ID:0:7}"
-               
+              aws cloudformation create-stack \
+                --template-body file://cloudfront.yml \
+                --stack-name production-distro \
+                --parameters file://cloudFront-parameters.json \
+                --region=us-east-1
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   deployAWSInfra:
     jobs:
-      - create_and_deploy_front_end
+      - create_infrastructure
